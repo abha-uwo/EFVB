@@ -1,10 +1,17 @@
 const Razorpay = require('razorpay');
 const crypto = require('crypto');
 
-const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID,
-    key_secret: process.env.RAZORPAY_KEY_SECRET,
-});
+let razorpayInstance = null;
+
+const getRazorpay = () => {
+    if (!razorpayInstance) {
+        razorpayInstance = new Razorpay({
+            key_id: process.env.RAZORPAY_KEY_ID,
+            key_secret: process.env.RAZORPAY_KEY_SECRET,
+        });
+    }
+    return razorpayInstance;
+};
 
 const createRazorpayOrder = async (amount, currency = 'INR', receipt = '') => {
     try {
@@ -13,7 +20,7 @@ const createRazorpayOrder = async (amount, currency = 'INR', receipt = '') => {
             currency,
             receipt: receipt || `receipt_${Date.now()}`,
         };
-        const order = await razorpay.orders.create(options);
+        const order = await getRazorpay().orders.create(options);
         return order;
     } catch (error) {
         console.error('Razorpay Order Creation Error:', error);
@@ -32,7 +39,7 @@ const verifyPaymentSignature = (orderId, paymentId, signature) => {
 };
 
 module.exports = {
-    razorpay,
+    getRazorpay,
     createRazorpayOrder,
     verifyPaymentSignature
 };

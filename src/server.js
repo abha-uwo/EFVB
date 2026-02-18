@@ -3,8 +3,8 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load .env from parent directory (EFV-Backend/.env)
-dotenv.config({ path: path.join(__dirname, '..', '.env') });
+// Load .env from src directory (where it actually lives)
+dotenv.config({ path: path.join(__dirname, '.env') });
 const connectDB = require('./config/db');
 
 // Connect to Database
