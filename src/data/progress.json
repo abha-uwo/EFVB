@@ -1,0 +1,12 @@
+[
+  {
+    "userId": "test_user_123",
+    "productId": "test_product_456",
+    "progress": 5,
+    "total": 100,
+    "lastUpdated": "2026-02-17T10:40:42.720Z",
+    "_id": "mlqh2rxfvijwrvqzy6o",
+    "createdAt": "2026-02-17T10:40:42.723Z",
+    "updatedAt": "2026-02-17T10:40:42.723Z"
+  }
+]
