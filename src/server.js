@@ -36,6 +36,9 @@ global.demoProducts = [
 ];
 
 // Routes
+app.get('/api/health', (req, res) => {
+    res.send('EFV Backend is running');
+});
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/content', require('./routes/content'));
 app.use('/api/library', require('./routes/library'));
