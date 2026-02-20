@@ -3,14 +3,23 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
 
-// Load .env from src directory (where it actually lives)
-dotenv.config({ path: path.join(__dirname, '.env') });
+// Load .env from project root
+dotenv.config({ path: path.join(__dirname, '../.env') });
 const connectDB = require('./config/db');
 
 // Connect to Database
 connectDB();
 
 const app = express();
+
+// Root route
+app.get('/', (req, res) => {
+    res.json({
+        message: 'EFV Backend API is running',
+        status: 'online',
+        timestamp: new Date().toISOString()
+    });
+});
 
 app.use(cors());
 app.use(express.json());
